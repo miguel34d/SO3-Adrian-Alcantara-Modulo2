@@ -1,0 +1,122 @@
+Comandos usados practica 1
+============================================
+Windows
+date /t
+time /t
+
+=== Linux Mint ===
+sudo apt install
+sudo apt update -y
+cd /etc/apt/sources.list.d/
+apt-cache policy
+apt-cache serch bashtop
+sudo apt install git
+cd && cd Deskt*
+sudo git clone https://github.com/aristocratos/bashtop
+ls
+cd bashtop
+cd DEB
+sudo ./build
+bashtop
+sudo apt remove bashtop --purgue -y
+bashtop
+sudo apt autoremove -y
+cd /Desktop/bashtop
+ls
+ls -l
+rm -r bashtop
+sudo rm -rf bashtop
+
+Windows
+date /t
+time /t
+
+
+Comandos usados practica 2
+============================================
+Windows
+date /t
+time /t
+
+=== Linux Mint ===
+crontab -l
+crontab -r
+crontab -l
+crontab -e
+* 23 * * * sudo apt update && sudo apt upgrade -y
+crontab -l
+crontab -e
+0 3 * * 0 /bash/shutdown -r now
+ls /tmp
+at now + 1 minute
+sudo rm -rf /tmp/*
+at now + 1 minute
+sudo rm -rf /tmp/*
+ls /tmp
+
+Windows
+date /t
+time /t
+
+
+Comandos usados practica 3
+============================================
+Windows
+date /t
+time /t
+
+=== Linux Mint ===
+sudo fdisk -l
+sudo reboot
+sudo fdisk -l
+sudo fdisk dev/sdb
+sudo fdisk -l
+sudo mkfs.ext4 ev/sdb
+mkdir -p DISCO
+ls
+sudo mount /dev/sdb1 DISCO
+cd DISCO
+touch AdrianAlcantara.txt
+sudo umount /dev/sdb1 DISCO
+cd
+sudo umount /dev/sdb1 DISCO
+sudo mount /dev/sdb1 /mnt
+cd /mnt
+ls
+
+Windows
+date /t
+time /t
+
+
+Comandos usados practica 4
+============================================
+
+(espacio reservado)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
