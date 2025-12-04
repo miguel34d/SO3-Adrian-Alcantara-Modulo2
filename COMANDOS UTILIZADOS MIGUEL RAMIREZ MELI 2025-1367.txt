@@ -1,122 +1,112 @@
-Comandos usados practica 1
-============================================
-Windows
-date /t
-time /t
+# =========================================================
+# PRACTICA 1 – Gestión de repositorios e instalación Bashtop
+# =========================================================
 
-=== Linux Mint ===
-sudo apt install
+# 1. Actualizar repositorios y paquetes
 sudo apt update -y
+sudo apt upgrade -y
+
+# 2. Listar repositorios usados
 cd /etc/apt/sources.list.d/
+ls
 apt-cache policy
-apt-cache serch bashtop
-sudo apt install git
-cd && cd Deskt*
+
+# 3. Buscar bashtop en los repositorios
+apt-cache search bashtop
+
+# 4. Instalar Git (necesario para clonar)
+sudo apt install git -y
+
+# 5. Descargar Bashtop desde GitHub
+cd ~/Desktop
 sudo git clone https://github.com/aristocratos/bashtop
-ls
-cd bashtop
-cd DEB
+
+# 6. Compilar e instalar Bashtop
+cd bashtop/DEB
 sudo ./build
+
+# 7. Ejecutar Bashtop
 bashtop
-sudo apt remove bashtop --purgue -y
-bashtop
+
+# 8. Desinstalar Bashtop junto a sus configuraciones
+sudo apt remove bashtop --purge -y
+
+# 9. Eliminar dependencias ya no necesarias
 sudo apt autoremove -y
-cd /Desktop/bashtop
-ls
-ls -l
-rm -r bashtop
+
+# 10. Borrar la carpeta descargada del repositorio
+cd ~/Desktop
 sudo rm -rf bashtop
 
-Windows
-date /t
-time /t
 
+# =========================================================
+# PRACTICA 2 – Cron, reinicio automático y tarea AT
+# =========================================================
 
-Comandos usados practica 2
-============================================
-Windows
-date /t
-time /t
-
-=== Linux Mint ===
-crontab -l
-crontab -r
-crontab -l
+# 1. Crear un cron que actualice el sistema todos los días a las 11 PM
 crontab -e
-* 23 * * * sudo apt update && sudo apt upgrade -y
-crontab -l
+# Agregar esta línea:
+# 0 23 * * * sudo apt update && sudo apt upgrade -y
+
+# 2. Programar reinicio todos los domingos a las 3 AM
 crontab -e
-0 3 * * 0 /bash/shutdown -r now
-ls /tmp
-at now + 1 minute
-sudo rm -rf /tmp/*
-at now + 1 minute
-sudo rm -rf /tmp/*
+# Agregar esta línea:
+# 0 3 * * 0 /sbin/shutdown -r now
+
+# 3. Ver contenido actual de /tmp
 ls /tmp
 
-Windows
-date /t
-time /t
+# 4. Programar con "at" para borrar /tmp en 1 minuto
+at now + 1 minute
+# Dentro del prompt escriba:
+# sudo rm -rf /tmp/*
+# y luego presione CTRL+D para confirmar
+
+# 5. Verificar nuevamente el contenido
+ls /tmp
 
 
-Comandos usados practica 3
-============================================
-Windows
-date /t
-time /t
+# =========================================================
+# PRACTICA 3 – Disco nuevo, formateo, montaje y verificación
+# =========================================================
 
-=== Linux Mint ===
-sudo fdisk -l
+# 1. Crear en la VM un disco de 20 GB y adjuntarlo (no comando, acción en la VM)
+
+# 2. Reiniciar la máquina
 sudo reboot
-sudo fdisk -l
-sudo fdisk dev/sdb
-sudo fdisk -l
-sudo mkfs.ext4 ev/sdb
-mkdir -p DISCO
-ls
-sudo mount /dev/sdb1 DISCO
-cd DISCO
-touch AdrianAlcantara.txt
-sudo umount /dev/sdb1 DISCO
-cd
-sudo umount /dev/sdb1 DISCO
+
+# 3. Detectar el nuevo disco (ejemplo: /dev/sdb)
+lsblk
+
+# 4. Crear partición (ejemplo con /dev/sdb)
+sudo fdisk /dev/sdb
+# Dentro de fdisk:
+# n  → nueva partición
+# p  → primaria
+# 1  → número de partición
+# Enter → aceptar tamaño por defecto
+# w → guardar cambios
+
+# 5. Formatear como ext4
+sudo mkfs.ext4 /dev/sdb1
+
+# 6. Crear carpeta en el Escritorio para montar
+mkdir ~/Desktop/Disco20GB
+
+# 7. Montar el disco
+sudo mount /dev/sdb1 ~/Desktop/Disco20GB
+
+# 8. Crear archivo dentro del disco montado
+cd ~/Desktop/Disco20GB
+echo "Archivo de prueba" | sudo tee AdrianAlcantara.txt
+
+# 9. Desmontar
+sudo umount ~/Desktop/Disco20GB
+
+# 10. Montarlo en /mnt
 sudo mount /dev/sdb1 /mnt
+
+# 11. Entrar y verificar que el archivo aún existe
 cd /mnt
 ls
-
-Windows
-date /t
-time /t
-
-
-Comandos usados practica 4
-============================================
-
-(espacio reservado)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+cat AdrianAlcantara.txt
