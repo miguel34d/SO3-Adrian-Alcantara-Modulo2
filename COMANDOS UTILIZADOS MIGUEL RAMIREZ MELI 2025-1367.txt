@@ -84,6 +84,8 @@ sudo reboot
 
 # 3. Detectar el nuevo disco (ejemplo: /dev/sdb)
 lsblk
+o 
+sudo fdisk -l 
 
 # 4. Crear partición (ejemplo con /dev/sdb)
 sudo fdisk /dev/sdb
@@ -94,27 +96,28 @@ sudo fdisk /dev/sdb
 # Enter → aceptar tamaño por defecto
 # w → guardar cambios
 
-# 5. Formatear como ext4
+#VERIFICAR
+lsblk
+
+# Formatear la partición en EXT4
 sudo mkfs.ext4 /dev/sdb1
 
-# 6. Crear carpeta en el Escritorio para montar
-mkdir ~/Desktop/Disco20GB
+# Crear carpeta SO3 en el escritorio
+mkdir ~/Desktop/SO3
 
-# 7. Montar el disco
-sudo mount /dev/sdb1 ~/Desktop/Disco20GB
+# Montar el disco en SO3
+sudo mount /dev/sdb1 ~/Desktop/SO3
 
-# 8. Crear archivo dentro del disco montado
-cd ~/Desktop/Disco20GB
-echo "Archivo de prueba" | sudo tee AdrianAlcantara.txt
+# Entrar y crear el archivo
+cd ~/Desktop/SO3
+sudo touch AdrianAlcantara.txt
 
-# 9. Desmontar
-sudo umount ~/Desktop/Disco20GB
+# Salir y desmontar
+cd ~
+sudo umount ~/Desktop/SO3
 
-# 10. Montarlo en /mnt
+# Montarlo ahora en /mnt
 sudo mount /dev/sdb1 /mnt
 
-# 11. Entrar y verificar que el archivo aún existe
-cd /mnt
-ls
-cat AdrianAlcantara.txt
-
+# Comprobar que el archivo está ahí
+ls /mnt
